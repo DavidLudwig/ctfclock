@@ -1,14 +1,33 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      CTFClock.com
     </ion-title>
+    <ion-buttons right>
+      <button ion-button align=right (click)="askReset()">Reset</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <ion-card class="button-left" (touchstart)="left('touch')" (click)="left('click')">
+    <div class="card-header">{{timeRemainingLeftFormatted}}</div>
+    <div class="card-content">
+      <ion-icon name="flag" class="flag-left"></ion-icon>
+    </div>
+  </ion-card>
+
+  <ion-card class="button-middle" (touchstart)="pause('touch')" (click)="pause('click')">
+    <div class="card-header"><!-- a unicode em-space (whitespace; U+2003) character follows --> </div>
+    <div class="card-content">
+      <ion-icon name="pause"></ion-icon>
+    </div>
+  </ion-card>
+
+  <ion-card class="button-right" (touchstart)="right('touch')" (click)="right('click')">
+    <div class="card-header">{{timeRemainingRightFormatted}}</div>
+    <div class="card-content">
+      <ion-icon name="flag" class="flag-right"></ion-icon>
+    </div>
+  </ion-card>
 </ion-content>
