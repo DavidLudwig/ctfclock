@@ -6,4 +6,6 @@ Available online at http://ctfclock.com
 
 Written by [David Ludwig](https://twitter.com/DavidLudwig)
 
+Uses the [Ionic Framework](http://ionicframework.com) for UI.
+
 See the file, LICENSE, for details on copying.  (TL,DR: It's the zlib license.)
