@@ -125,22 +125,9 @@ export class HomePage {
     }
   }
 
-  shouldDropClick(src) {
-    if (src == 'click') {
-      if ('ontouchstart' in document.documentElement) {
-        console.log("drop click")
-        return true;
-      }
-    }
-    return false;
-  }
-
   /* called when left-side has it! */
   left(src?) {
     console.log("left("+src+")");
-    if (this.shouldDropClick(src)) {
-      return;
-    }
     if (this.state == State.Left) {
       return;
     }
@@ -151,9 +138,6 @@ export class HomePage {
   /* called when right-side has it! */
   right(src?) {
     console.log("right("+src+")")
-    if (this.shouldDropClick(src)) {
-      return;
-    }
     if (this.state == State.Right) {
       return;
     }
@@ -164,9 +148,6 @@ export class HomePage {
   /* pauses the timer */
   pause(src?) {
     console.log("pause("+src+")")
-    if (this.shouldDropClick(src)) {
-      return;
-    }
     if (this.state == State.Paused) {
       return;
     }

@@ -10,21 +10,21 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="button-left" (touchstart)="left('touch')" (click)="left('click')">
+  <ion-card class="button-left" (tap)="left('tap')">
     <div class="card-header">{{timeRemainingLeftFormatted}}</div>
     <div class="card-content">
       <ion-icon name="flag" class="flag-left"></ion-icon>
     </div>
   </ion-card>
 
-  <ion-card class="button-middle" (touchstart)="pause('touch')" (click)="pause('click')">
+  <ion-card class="button-middle" (tap)="pause('tap')">
     <div class="card-header"><!-- a unicode em-space (whitespace; U+2003) character follows --> </div>
     <div class="card-content">
       <ion-icon name="pause"></ion-icon>
     </div>
   </ion-card>
 
-  <ion-card class="button-right" (touchstart)="right('touch')" (click)="right('click')">
+  <ion-card class="button-right" (tap)="right('tap')">
     <div class="card-header">{{timeRemainingRightFormatted}}</div>
     <div class="card-content">
       <ion-icon name="flag" class="flag-right"></ion-icon>
