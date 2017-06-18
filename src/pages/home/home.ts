@@ -80,7 +80,7 @@ export class HomePage {
   }
 
   /** updates time-dependent app-state (timers, UI, etc.);
-      This is alled periodically when timers are running.
+      This is called periodically when timers are running.
     */
   update() {
     let now = Date.now();
