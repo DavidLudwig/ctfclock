@@ -4,7 +4,7 @@ help:
 	@echo ""
 	@echo "Please run ${notdir ${MAKE}} with one of the following options:"
 	@echo ""
-	@echo "  release      - builds for production, then uploads to various places"
+	@echo "  release, rel - builds for production, then uploads to various places"
 	@echo ""
 	@echo "  build        - builds for production (with minify, etc.)"
 	@echo "  upload       - uploads to various places"
@@ -13,6 +13,7 @@ help:
 	@echo ""
 
 release: build upload
+rel: release
 
 build:
 	npm run ionic:build --prod
