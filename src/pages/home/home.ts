@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 //import { NavController } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
+import { AlertController, Events } from 'ionic-angular';
+import { MyApp } from '../../app/app.component';
 
 /** Overall app state */
 enum State {
@@ -13,13 +14,6 @@ enum State {
   /** We are paused */
   Paused,
 };
-
-function StringPadLeft(str, padStr, length) {
-  while (str.length < length) {
-    str = padStr + str;
-  }
-  return str;
-}
 
 /** Converts a time duration in milliseconds, to a human-friendly string value */
 function FormatTimeDurationMS(timeMS: number) {
@@ -38,16 +32,12 @@ function FormatTimeDurationMS(timeMS: number) {
   }
 
   return "" +
-    StringPadLeft(minutes.toString(), "0", 1) +
+    MyApp.StringPadLeft(minutes.toString(), "0", 1) +
     ":" +
-    StringPadLeft(seconds.toString(), "0", 2) +
+    MyApp.StringPadLeft(seconds.toString(), "0", 2) +
     "." +
-    StringPadLeft(milliseconds.toString().substr(0,2), "0", 2);
+    MyApp.StringPadLeft(milliseconds.toString().substr(0,2), "0", 2);
 }
-
-/** Default goal-time */
-const DefaultTimeGoalMS = 5 * 60 * 1000;
-// const DefaultTimeGoalMS = 5 * 1000;
 
 
 @Component({
@@ -58,6 +48,9 @@ export class HomePage {
   /** app state */
   state : State = State.Paused;
 
+  /** has either timer been run, yet, since the last reset? */
+  didRun : boolean = false;
+
   /** id from setInterval() */
   timerID = 0;
 
@@ -65,14 +58,20 @@ export class HomePage {
   timerPreviousMS = 0;
 
   /** time remaining for left-side */
-  timeRemainingLeftMS = DefaultTimeGoalMS;
+  timeRemainingLeftMS = MyApp.DefaultTimeGoalMS;
   timeRemainingLeftFormatted = "...";
 
   /** time remaining for right-side */
-  timeRemainingRightMS = DefaultTimeGoalMS;
+  timeRemainingRightMS = MyApp.DefaultTimeGoalMS;
   timeRemainingRightFormatted = "...";
 
-  constructor(public alerCtrl: AlertController) {}
+  constructor(public alerCtrl: AlertController, public events: Events) {
+    events.subscribe('saveSetting', (key) => {
+      if ( ! this.didRun) {
+        this.reset();
+      }
+    });
+  }
 
   ionViewDidLoad() {
     // Make sure up-to-date values get displayed, initially
@@ -162,6 +161,7 @@ export class HomePage {
     if (this.timerID != 0) {
       return;
     }
+    this.didRun = true;
     this.timerPreviousMS = Date.now();
     this.timerID = setInterval(() => { this.update(); }, 1000 / 60);
   }
@@ -170,8 +170,9 @@ export class HomePage {
   reset() {
     console.log("reset")
     this.pause();
-    this.timeRemainingLeftMS = DefaultTimeGoalMS;
-    this.timeRemainingRightMS = DefaultTimeGoalMS;
+    this.timeRemainingLeftMS = parseInt(localStorage.getItem('leftStartTimeMS'));
+    this.timeRemainingRightMS = parseInt(localStorage.getItem('rightStartTimeMS'));
+    this.didRun = false;
     this.update();
   }
 
