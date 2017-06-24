@@ -29,7 +29,7 @@ upload_wpi:
 	rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress ${CURDIR}/www/ alum.wpi.edu:~/public_html/ctfclock/
 
 upload_google:
-	gsutil -m rsync -d -r ${CURDIR}/www/ gs://ctfclock.com/
+	gsutil -m rsync -d -r ${CURDIR}/www/ gs://www.ctfclock.com/
 
 upload_ionic:
 	ionic upload --nobuild
