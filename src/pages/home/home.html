@@ -13,21 +13,21 @@
 </ion-header>
 
 <ion-content no-bounce>
-  <ion-card class="button-left" tappable (click)="left('tap')">
+  <ion-card class="button-left" tappable (touchstart)="left('touchstart')" (click)="left('tap')">
     <div class="card-header">{{timeRemainingLeftFormatted}}</div>
     <div class="card-content">
       <ion-icon name="flag" class="flag-left"></ion-icon>
     </div>
   </ion-card>
 
-  <ion-card class="button-middle" tappable (click)="pause('tap')">
+  <ion-card class="button-middle" tappable (touchstart)="pause('touchstart')" (click)="pause('tap')">
     <div class="card-header"><!-- a unicode em-space (whitespace; U+2003) character follows --> </div>
     <div class="card-content">
       <ion-icon name="pause"></ion-icon>
     </div>
   </ion-card>
 
-  <ion-card class="button-right" tappable (click)="right('tap')">
+  <ion-card class="button-right" tappable (touchstart)="right('touchstart')" (click)="right('tap')">
     <div class="card-header">{{timeRemainingRightFormatted}}</div>
     <div class="card-content">
       <ion-icon name="flag" class="flag-right"></ion-icon>
