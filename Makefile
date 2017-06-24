@@ -6,6 +6,7 @@ help:
 	@echo ""
 	@echo "  release, rel - builds for production, then uploads to various places"
 	@echo ""
+	@echo "  dev           - launches a dev environent, with a web server on localhost"
 	@echo "  build         - builds for production (with minify, etc.)"
 	@echo "  upload        - uploads to various places"
 	@echo "  upload_google - uploads to cffclock.com (at Google)"
@@ -18,6 +19,9 @@ rel: release
 
 build:
 	npm run ionic:build --prod
+
+dev:
+	ionic serve -b
 
 upload: upload_google upload_ionic upload_wpi
 
